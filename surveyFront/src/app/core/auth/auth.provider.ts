@@ -12,6 +12,8 @@ import { AuthService } from './auth.service';
 export const provideAuth = (): Array<Provider | EnvironmentProviders> => {
   return [
     provideHttpClient(withInterceptors([authInterceptor])),
+
+    // TODO: DEPRECATED
     {
       provide: ENVIRONMENT_INITIALIZER,
       useValue: () => inject(AuthService),
