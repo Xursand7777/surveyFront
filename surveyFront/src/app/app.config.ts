@@ -40,6 +40,8 @@ export const appConfig:ApplicationConfig = {
         },
         loader: TranslocoHttpLoader
       }),
+
+      // TODO: DEPRECATED
     {
       // Preload the default language before the app starts to prevent empty/jumping content
       provide: APP_INITIALIZER,
@@ -52,11 +54,13 @@ export const appConfig:ApplicationConfig = {
       },
       multi: true,
     },
+    // TODO: DEPRECATED
     {
       provide: ENVIRONMENT_INITIALIZER,
       useValue: () => inject(SplashScreenService),
       multi: true,
     },
+    // TODO: DEPRECATED
     {
       provide: APP_INITIALIZER,
       useFactory: iconFactory,
