@@ -1,0 +1,16 @@
+<div class="flex gap-3 items-center cursor-pointer" (click)="toggle()">
+  <nz-avatar
+    nzSize="large"
+    nzIcon="user"
+    class="border-2 border-[#65758c] text-[#65758c]"
+  ></nz-avatar>
+
+  <div>
+    @if (user$ | async; as user) {
+      <p class="text-lg font-semibold">{{ user.fullName }}</p>
+      <p class="text-[#6D6D6D] leading-none text-sm">
+        {{ user.activeRole | transloco }}
+      </p>
+    }
+  </div>
+</div>
