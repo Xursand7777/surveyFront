@@ -1,27 +1,63 @@
-# SurveyFront
+# Angular 19.2 + Tailwind CSS 3.4.17 Qo‘llanma
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.7.
+## 📌 Kerakli Paketlar va Versiyalar
+Ushbu loyihada ishlash uchun quyidagi bog‘liqliklar o‘rnatilgan bo‘lishi kerak:
 
-## Development server
+### 🛠 Global O‘rnatilishi Kerak Bo‘lgan Vositalar
+- **Node.js**: v18+ (Tavsiya etiladi: Eng so‘nggi LTS versiya)
+- **Angular CLI**: 19.2 (`npm install -g @angular/cli@19.2`)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### 📦 Loyiha Bog‘liqliklari
+Loyihada quyidagi paketlar o‘rnatilgan:
+- **Angular**: 19.2
+- **Tailwind CSS**: 3.4.17
+- **NG Zorro**: 19.1.0
 
-## Code scaffolding
+## 🚀 Loyiha Boshqaruvi
+### Bog‘liqliklarni O‘rnatish
+```sh
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Ishlab Chiqish Rejimida Loyihani Ishga Tushirish
+```sh
+ng serve
+```
+Brauzeringizda `http://localhost:4200/` sahifasiga o‘ting.
 
-## Build
+### Ishlab Chiqish Uchun Build Tayyorlash
+```sh
+ng build --configuration=production
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 📂 Loyiha Tuzilmasi
+```
+my-angular-app/
+├── src/
+│   ├── app/
+│   ├── assets/
+│   ├── environments/
+│   ├── styles.css
+│   ├── main.ts
+│   └── index.html
+├── angular.json
+├── package.json
+├── tailwind.config.js
+└── tsconfig.json
+```
 
-## Running unit tests
+## 🎯 Qo‘shimcha Buyruqlar
+### Angular-ni Eng So‘nggi Versiyaga Yangilash
+```sh
+ng update @angular/core @angular/cli
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Qo‘shimcha Kutubxonalarni O‘rnatish (Ixtiyoriy)
+Masalan, cdk:
+```sh
+npm install @angular/cdk @angular/animations
+```
 
-## Running end-to-end tests
+## ✅ Xulosa
+Ishni boshlashdan oldin kerakli vositalarning o‘rnatilganligini tekshiring. Omad tilaymiz! 🎉
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
