@@ -1,16 +1,16 @@
-import {AfterViewInit, Component, ElementRef, HostListener, inject, OnInit, ViewChild} from "@angular/core";
-import {Menu} from "@core/interfaces/menu";
-import {NgClass} from "@angular/common";
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
-import {NzButtonComponent} from "ng-zorro-antd/button";
-import {NzIconDirective} from "ng-zorro-antd/icon";
-import {TranslocoPipe} from "@ngneat/transloco";
-import {Constants} from "@core/constants/constants";
+import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Menu } from '@core/interfaces/menu';
+import { NgClass } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
+import { TranslocoPipe } from '@ngneat/transloco';
+import { Constants } from '@core/constants/constants';
 
 @Component({
-  selector: "app-layout",
-  templateUrl: "./layout.component.html",
-  styleUrls: ["./layout.component.scss"],
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss'],
   imports: [
     NgClass,
     RouterLink,
@@ -18,9 +18,9 @@ import {Constants} from "@core/constants/constants";
     NzButtonComponent,
     NzIconDirective,
     TranslocoPipe,
-    RouterLinkActive
+    RouterLinkActive,
   ],
-  standalone: true
+  standalone: true,
 })
 export class LayoutComponent implements AfterViewInit {
   @ViewChild('verticalNavigation') verticalNavigation!: ElementRef;
@@ -44,11 +44,7 @@ export class LayoutComponent implements AfterViewInit {
       this.isMobile = false;
     }
 
-    this.verticalNavigation.nativeElement.style.setProperty(
-      'position',
-      position,
-      'important',
-    );
+    this.verticalNavigation.nativeElement.style.setProperty('position', position, 'important');
   }
 
   @HostListener('window:resize', ['$event'])
@@ -62,7 +58,7 @@ export class LayoutComponent implements AfterViewInit {
 
   readonly menus: Menu[] = [
     {
-      label:'Asosiy oynalar',
+      label: 'Asosiy oynalar',
       permissions: [Constants.ROLES.ADMIN],
       icon: '',
       children: [
@@ -70,9 +66,9 @@ export class LayoutComponent implements AfterViewInit {
           label: 'Proyektlar',
           routerLink: 'projects',
           permissions: [Constants.ROLES.ADMIN],
-          icon: ''
-        }
-      ]
-    }
+          icon: '',
+        },
+      ],
+    },
   ];
 }

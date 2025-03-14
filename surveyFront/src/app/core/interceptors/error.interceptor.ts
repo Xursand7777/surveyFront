@@ -1,9 +1,9 @@
-import {HttpErrorResponse, HttpInterceptorFn} from "@angular/common/http";
-import {catchError, Observable, of, throwError} from "rxjs";
-import {inject} from "@angular/core";
-import {TranslocoService} from "@ngneat/transloco";
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
+import { catchError, Observable, of, throwError } from 'rxjs';
+import { inject } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 
-export const ErrorInterceptor:HttpInterceptorFn = (req, next) => {
+export const ErrorInterceptor: HttpInterceptorFn = (req, next) => {
   const $translate = inject(TranslocoService);
   console.log('Request URL: ' + req.url);
   return next(req).pipe(
@@ -30,7 +30,7 @@ function blobToText(blob: any): Observable<string> {
       observer.next('');
       observer.complete();
     } else {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = (event) => {
         observer.next((event.target as any).result);
         observer.complete();
