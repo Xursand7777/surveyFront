@@ -1,4 +1,4 @@
-# Angular 19.2 + Tailwind CSS 3.4.17 Qo‘llanma
+# Loyihani o'rnatish uchun qo'llanma
 
 ## 📌 Kerakli Paketlar va Versiyalar
 Ushbu loyihada ishlash uchun quyidagi bog‘liqliklar o‘rnatilgan bo‘lishi kerak:
