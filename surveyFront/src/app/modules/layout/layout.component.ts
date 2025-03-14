@@ -1,76 +1,71 @@
-import {AfterViewInit, Component, ElementRef, HostListener, inject, OnInit, ViewChild} from "@angular/core";
-import {Menu} from "@core/interfaces/menu";
-import {NgClass} from "@angular/common";
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
-import {NzButtonComponent} from "ng-zorro-antd/button";
+import {Component,  input} from "@angular/core";
+import {MenuItem} from "@core/interfaces/menu";
+import {NgTemplateOutlet} from "@angular/common";
+import {ActivatedRoute, RouterLink, RouterOutlet} from "@angular/router";
 import {NzIconDirective} from "ng-zorro-antd/icon";
-import {TranslocoPipe} from "@ngneat/transloco";
 import {Constants} from "@core/constants/constants";
+import {
+  NzContentComponent,
+  NzFooterComponent,
+  NzHeaderComponent,
+  NzLayoutComponent,
+  NzSiderComponent
+} from "ng-zorro-antd/layout";
+import {NzMenuModule} from "ng-zorro-antd/menu";
+import {NzBreadCrumbComponent, NzBreadCrumbItemComponent} from "ng-zorro-antd/breadcrumb";
+import {LanguagesComponent} from "@modules/layout/languages/languages.component";
+import {UserComponent} from "@modules/layout/user/user.component";
 
 @Component({
   selector: "app-layout",
   templateUrl: "./layout.component.html",
   styleUrls: ["./layout.component.scss"],
   imports: [
-    NgClass,
     RouterLink,
-    RouterOutlet,
-    NzButtonComponent,
     NzIconDirective,
-    TranslocoPipe,
-    RouterLinkActive
+    NzMenuModule,
+    NgTemplateOutlet,
+    NzLayoutComponent,
+    NzSiderComponent,
+    NzHeaderComponent,
+    NzContentComponent,
+    NzBreadCrumbComponent,
+    NzBreadCrumbItemComponent,
+    NzFooterComponent,
+    RouterOutlet,
+    LanguagesComponent,
+    UserComponent,
   ],
   standalone: true
 })
-export class LayoutComponent implements AfterViewInit {
-  @ViewChild('verticalNavigation') verticalNavigation!: ElementRef;
-  //user$ = inject(UserService).user$;
-  visibleSidebar = true;
-  isMobile = false;
+export class LayoutComponent {
 
-  toggleVerticalNavigation() {
-    this.visibleSidebar = !this.visibleSidebar;
-  }
+  isCollapsed = input<boolean>();
 
-  makeSidebar(width: number) {
-    let position = 'sticky';
-    if (width < 768) {
-      this.visibleSidebar = false;
-      position = 'absolute';
-      this.isMobile = true;
-    } else {
-      this.visibleSidebar = true;
-      position = 'sticky';
-      this.isMobile = false;
+
+  constructor(
+    public route: ActivatedRoute,
+  ) {}
+
+  handleMiddleClick(event: MouseEvent, url: string): void {
+    if (event.button === 1) {
+      event.preventDefault();
+      window.open(url, '_blank');
     }
-
-    this.verticalNavigation.nativeElement.style.setProperty(
-      'position',
-      position,
-      'important',
-    );
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.makeSidebar(event.target.innerWidth);
-  }
 
-  ngAfterViewInit(): void {
-    this.makeSidebar(window.innerWidth);
-  }
-
-  readonly menus: Menu[] = [
+  readonly menus: MenuItem[] = [
     {
       label:'Asosiy oynalar',
       permissions: [Constants.ROLES.ADMIN],
-      icon: '',
+      icon: 'survey_info',
       children: [
         {
           label: 'Proyektlar',
-          routerLink: 'projects',
+          url: 'projects',
           permissions: [Constants.ROLES.ADMIN],
-          icon: ''
+          icon: 'survey_info'
         }
       ]
     }

@@ -40,7 +40,7 @@ export const SVG_ICONS = {
   lang_qa: 'survey_qa',
   logo: 'survey_logo',
   logo_auth: 'survey_logo_auth',
-  ped_telegram: 'survey_telegram',
+  survey_telegram: 'survey_telegram',
 };
 
 

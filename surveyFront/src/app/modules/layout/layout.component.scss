@@ -1,103 +1,66 @@
-.layout {
-  router-outlet {
-    +* {
-      position: relative;
-      display: flex;
-      flex: 1 1 auto;
-      width: 100%;
-    }
-  }
-}
 
-::ng-deep .p-tieredmenu .p-tieredmenu-root-list {
-  a {
-    border-radius: 0.5rem;
-    transition: all 0.3s ease-in-out;
+
+:host {
+  .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
   }
 
-  li {
-    border-radius: 0.5rem;
-    transition: all 0.3s ease-in-out;
-
-    span,
-    i {
-      color: #fff;
-    }
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.15);
-    }
+  nz-header {
+    background: #fff;
+    padding: 0;
   }
 
-  .p-submenu-list {
-    li {
-
-      span,
-      i {
-        color: inherit;
-      }
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .custom-fixed {
-    position: absolute !important;
-  }
-}
-
-.vertical-navigation-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 170;
-  background-color: #0009;
-}
-
-.inactive_text {
-  color: #5d5d5d;
-}
-
-.active_text {
-  color: white;
-}
-
-.item:hover {
-  background: #353e81 !important;
-  color: white !important;
-}
-
-.item-title {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-:host ::ng-deep .burger .pi {
-  font-size: 20px;
-}
-
-
-.custom-scroll {
-  &::-webkit-scrollbar {
-    width: 6px;
+  nz-content {
+    margin: 0 16px;
   }
 
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+  nz-breadcrumb {
+    margin: 16px 0;
   }
 
-  &::-webkit-scrollbar-thumb {
-    position: absolute;
-    right: 0;
-    background-color: #888;
-    border-radius: 10px;
-    /* outline: 1px solid slategrey; */
+  .inner-content {
+    padding: 24px;
+    background: #fff;
+    min-height: 360px;
+    height: 100%;
+  }
+
+  nz-footer {
+    text-align: center;
   }
 
 
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  ::ng-deep .ant-menu.ant-menu-inline-collapsed .ant-menu-item-group-title {
+    display: none;
   }
+
+  ::ng-deep .ant-menu-item-selected {
+    //background: fade(@ped-pink-2, 12%) !important;
+    //color: @ped-black-1;
+  }
+
+  [nz-menu] {
+    width: 200px;
+  }
+
+  [nz-menu-item] {
+    white-space: nowrap;
+    line-height: normal;
+    text-align: start;
+  }
+
+  [nz-menu-item]:hover {
+    //color: @ped-black-1;
+    //background: fade(@ped-pink-2, 5%);
+  }
+}
+
+::ng-deep router-outlet + * {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
 }

@@ -7,4 +7,4 @@ import {Component} from "@angular/core";
   imports: [],
   standalone: true
 })
-export class AuthComponent {}
+export class SignInComponent {}

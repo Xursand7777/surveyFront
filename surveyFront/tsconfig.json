@@ -28,7 +28,7 @@
         "src/app/api/*"
       ],
       "@constants/*": [
-        "src/app/constants/"
+        "src/app/core/constants/"
       ],
       "@core/*": [
         "src/app/core/*"

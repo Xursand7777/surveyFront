@@ -1,75 +1,168 @@
-<div
-  class="flex h-full w-full bg-[#F8FAFC] p-5"
-  [ngClass]="{ 'h-screen overflow-hidden': isMobile && visibleSidebar }"
->
-  <div
-    [ngClass]="{ '-ml-[300px] invisible': !visibleSidebar }"
-    #verticalNavigation
-    class="rounded-[20px] mr-5 flex flex-col flex-auto sticky top-0 w-[280px] min-w-[280px] max-w-[280px] py-4 h-screen min-h-screen max-h-screen z-[200] px-4 bg-white transition-all duration-300 ease-in-out custom-fixed"
-  >
-    <div class="">
-      <img src="" class="py-2 h-[60px] object-cover" alt="" />
-    </div>
-    <hr class="mt-2 xl:mt-[8px] mb-4 w-full m-0 border-b-0 border-[#E7E7E7]" />
-    <div class="custom-scroll overflow-hidden hover:overflow-y-auto">
-      @for (menuGroup of menus; track menuGroup) {
-        <p
-          class="text-[#b1875e] px-4 item-title py-[10px]"
+<!--<ng-container *transloco="let t">-->
+<!--  <ul-->
+<!--    nz-menu-->
+<!--    nzTheme="light"-->
+<!--    nzMode="inline"-->
+<!--    [nzInlineCollapsed]="true"-->
+<!--  >-->
+<!--    <ng-container *ngFor="let menu of menus; trackBy: trackByLabel">-->
+<!--      <ng-container *ngIf="menu?.children?.length; else singleItem">-->
+<!--        <li nz-menu-group [nzTitle]="menu?.label">-->
+<!--          <ul>-->
+<!--            <ng-container *ngFor="let group of menu.children; trackBy: trackByLabel">-->
+<!--              <ng-container *ngIf="group.itemType === 'multiple'; else singleItem">-->
+<!--                <li-->
+<!--                  nz-submenu-->
+<!--                  [nzIcon]="group?.icon || ''"-->
+<!--                  [nzTitle]="group?.label || ''"-->
+<!--                >-->
+<!--                  <ul>-->
+<!--                    <ng-container *ngFor="let child of group.children; trackBy: trackByLabel">-->
+<!--                      <li-->
+<!--                        nz-menu-item-->
+<!--                        nzMatchRouter-->
+<!--                        [routerLink]="child?.routerLink"-->
+<!--                        (mousedown)="handleMiddleClick($event, child?.routerLink)"-->
+<!--                      >-->
+<!--                        <span>{{ child.label }}</span>-->
+<!--                      </li>-->
+<!--                    </ng-container>-->
+<!--                  </ul>-->
+<!--                </li>-->
+<!--              </ng-container>-->
+<!--            </ng-container>-->
+<!--          </ul>-->
+<!--        </li>-->
+<!--      </ng-container>-->
+<!--    </ng-container>-->
 
-        >
-          {{ menuGroup.label | transloco }}
-        </p>
-        <ul class="w-full flex flex-col gap-2">
-          @for (menuItem of menuGroup.children; track $index) {
-            <li
-              class="flex items-center font-medium cursor-pointer rounded-[6px] inactive_text gap-2 px-4 py-[10px] text-[13px] item"
-              routerLinkActive="bg-[#353E81] active_text"
-              [routerLink]="menuItem.routerLink"
-              (click)="isMobile ? (visibleSidebar = false) : null"
-            >
-              <span [class]="menuItem.icon"></span>
-              <span>{{ menuItem.label | transloco }}</span>
+<!--    <ng-template #singleItem let-menu>-->
+<!--      <li-->
+<!--        nz-menu-item-->
+<!--        nzMatchRouter-->
+<!--        [routerLink]="menu.routerLink"-->
+<!--        (mousedown)="handleMiddleClick($event, menu.routerLink)"-->
+<!--      >-->
+<!--        <span nz-icon [nzType]="menu.icon"></span>-->
+<!--        <span>{{ t(menu.label) }}</span>-->
+<!--      </li>-->
+<!--    </ng-template>-->
+<!--  </ul>-->
+<!--</ng-container>-->
+
+
+
+<ng-container>
+  <nz-layout>
+    <nz-sider>
+      <div class="logo"></div>
+      <ul
+        nz-menu
+        nzTheme="light"
+        nzMode="inline"
+        [nzInlineCollapsed]="true"
+      >
+        @for (item of menus; track item.label) {
+          @if (!!item?.groupName) {
+            <li nz-menu-group [nzTitle]="item.groupName">
+              <ul>
+                @for (group of item.children; track group.label) {
+                  @switch (group.itemType) {
+                    @case('multiple') {
+                      <ng-container
+                        [ngTemplateOutlet]="multipleRef"
+                        [ngTemplateOutletContext]="{ item: group }">
+                      </ng-container>
+                    }
+                    @default {
+                      <ng-container
+                        [ngTemplateOutlet]="singleRef"
+                        [ngTemplateOutletContext]="{ item: group }">
+                      </ng-container>
+                    }
+                  }
+                }
+              </ul>
             </li>
+          } @else {
+            @switch (item.itemType) {
+              @case('multiple') {
+                <ng-container
+                  [ngTemplateOutlet]="multipleRef"
+                  [ngTemplateOutletContext]="{ item }">
+                </ng-container>
+              }
+              @default {
+                <ng-container
+                  [ngTemplateOutlet]="singleRef"
+                  [ngTemplateOutletContext]="{ item }">
+                </ng-container>
+              }
+            }
           }
-        </ul>
-      }
-    </div>
-  </div>
-  <div class="flex flex-col flex-auto w-full min-w-0 min-h-screen">
-    <div
-      class="rounded-[20px] flex justify-between px-6 py-5 items-center burger bg-white shadow"
-    >
-      <div class="flex items-center gap-4">
-        <button
-          nz-button
-          nzType="default"
-          nzShape="circle"
-          nzGhost
-          class="w-10 h-10 text-[#878787] border-none"
-          (click)="toggleVerticalNavigation()"
-        >
-          <i nz-icon nzType="menu" nzTheme="outline"></i>
-        </button>
-<!--        @if (user$ | async; as user) {-->
-<!--          <p class="text-2xl font-semibold">{{ user.organizationName }}</p>-->
-<!--        }-->
-      </div>
-      <div class="flex gap-6 items-center">
-<!--        <app-languages></app-languages>-->
-<!--        <app-user></app-user>-->
-      </div>
-    </div>
-    <div
-      class="flex flex-col flex-auto layout mt-5 rounded-[20px] bg-white shadow"
-    >
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+        }
 
-@if (isMobile && visibleSidebar) {
-  <div
-    class="vertical-navigation-overlay"
-    (click)="toggleVerticalNavigation()"
-  ></div>
-}
+        <ng-template #multipleRef let-item="item">
+          <li
+            nz-submenu
+            nzMatchRouter
+            [nzIcon]="item?.icon"
+            [nzTitle]="item?.label"
+          >
+            <ul>
+              @for (child of item.children; track child.label) {
+                <li
+                  nz-menu-item
+                  nzMatchRouter
+                  [relativeTo]="route.root"
+                  [routerLink]="child.url"
+                  (mousedown)="handleMiddleClick($event, child.url)"
+                >
+                            <span>
+                                {{child.label}}
+                            </span>
+                </li>
+              }
+            </ul>
+          </li>
+        </ng-template>
+
+        <ng-template #singleRef let-item="item">
+          <li
+            nz-menu-item
+            nzMatchRouter
+            [relativeTo]="route.root"
+            (mousedown)="handleMiddleClick($event, item.url)"
+            [routerLink]="item.url"
+          >
+                <span
+                  nz-icon
+                  [nzType]="item?.icon">
+                </span>
+            <span>
+                    {{item.label}}
+                </span>
+          </li>
+        </ng-template>
+      </ul>
+    </nz-sider>
+
+    <nz-layout>
+      <nz-header>
+        <app-languages></app-languages>
+        <app-user></app-user>
+      </nz-header>
+      <nz-content>
+        <nz-breadcrumb>
+          <nz-breadcrumb-item>User</nz-breadcrumb-item>
+          <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+        </nz-breadcrumb>
+        <div class="inner-content">
+          <router-outlet></router-outlet>
+        </div>
+      </nz-content>
+      <nz-footer>Ant Design ©2025 Implement By Angular</nz-footer>
+    </nz-layout>
+  </nz-layout>
+
+</ng-container>
