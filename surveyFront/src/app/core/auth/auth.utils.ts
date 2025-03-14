@@ -47,16 +47,13 @@ export class AuthUtils {
    * @private
    */
   private static _b64decode(str: string): string {
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     let output = '';
 
     str = String(str).replace(/=+$/, '');
 
     if (str.length % 4 === 1) {
-      throw new Error(
-        "'atob' failed: The string to be decoded is not correctly encoded."
-      );
+      throw new Error("'atob' failed: The string to be decoded is not correctly encoded.");
     }
 
     /* eslint-disable */
@@ -68,8 +65,8 @@ export class AuthUtils {
       // character found in table? initialize bit storage and add its ascii value;
       ~buffer &&
       ((bs = bc % 4 ? bs * 64 + buffer : buffer),
-        // and if not first of each 4 characters,
-        // convert the first 8 bits to one ascii character
+      // and if not first of each 4 characters,
+      // convert the first 8 bits to one ascii character
       bc++ % 4)
         ? (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6))))
         : 0
@@ -93,10 +90,9 @@ export class AuthUtils {
       Array.prototype.map
         .call(
           this._b64decode(str),
-          (c: any) =>
-            '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+          (c: any) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2),
         )
-        .join('')
+        .join(''),
     );
   }
 
@@ -144,7 +140,7 @@ export class AuthUtils {
 
     if (parts.length !== 3) {
       throw new Error(
-        "The inspected token doesn't appear to be a JWT. Check to make sure it has three parts and see https://jwt.io for more."
+        "The inspected token doesn't appear to be a JWT. Check to make sure it has three parts and see https://jwt.io for more.",
       );
     }
 

@@ -1,4 +1,4 @@
-import {CUSTOM_ICONS_TYPE} from "@core/typings/icons";
+import { CUSTOM_ICONS_TYPE } from '@core/typings/icons';
 
 export const SVG_ICONS = {
   lock: 'survey_lock',
@@ -42,7 +42,3 @@ export const SVG_ICONS = {
   logo_auth: 'survey_logo_auth',
   survey_telegram: 'survey_telegram',
 };
-
-
-
-

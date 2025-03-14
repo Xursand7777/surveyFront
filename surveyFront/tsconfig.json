@@ -19,40 +19,18 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
+    "lib": ["ES2022", "dom"],
     "paths": {
-      "@api/*": [
-        "src/app/api/*"
-      ],
-      "@constants/*": [
-        "src/app/core/constants/"
-      ],
-      "@core/*": [
-        "src/app/core/*"
-      ],
-      "@layout/*": [
-        "src/app/layout/*"
-      ],
-      "@modules/*": [
-        "src/app/modules/*"
-      ],
-      "@shared/*": [
-        "src/app/shared/*"
-      ],
-      "@typings/*": [
-        "src/app/typings/"
-      ],
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@env": [
-        "src/environments/environment"
-      ]
+      "@api/*": ["src/app/api/*"],
+      "@constants/*": ["src/app/constants/"],
+      "@core/*": ["src/app/core/*"],
+      "@layout/*": ["src/app/layout/*"],
+      "@modules/*": ["src/app/modules/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@typings/*": ["src/app/typings/"],
+      "@app/*": ["src/app/*"],
+      "@env": ["src/environments/environment"]
     }
-
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

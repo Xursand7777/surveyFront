@@ -28,9 +28,7 @@ import { Router } from '@angular/router';
  * @param next
  */
 let isRefreshing = false;
-const refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
-  null,
-);
+const refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
 export const authInterceptor = (
   req: HttpRequest<unknown>,
@@ -40,24 +38,15 @@ export const authInterceptor = (
   const $router = inject(Router);
   let newReq = req.clone();
 
-  if (
-    authService.accessToken &&
-    !AuthUtils.isTokenExpired(authService.accessToken)
-  ) {
+  if (authService.accessToken && !AuthUtils.isTokenExpired(authService.accessToken)) {
     newReq = req.clone({
-      headers: req.headers.set(
-        'Authorization',
-        'Bearer ' + authService.accessToken,
-      ),
+      headers: req.headers.set('Authorization', 'Bearer ' + authService.accessToken),
     });
   }
 
   return next(newReq).pipe(
     catchError((error) => {
-      if (
-        error instanceof HttpErrorResponse &&
-        error.status === HttpStatusCode.Unauthorized
-      ) {
+      if (error instanceof HttpErrorResponse && error.status === HttpStatusCode.Unauthorized) {
         if (error.url?.includes('Account/RefreshAccessToken')) {
           isRefreshing = false;
           $router.navigate(['/sign-in']);
@@ -113,10 +102,7 @@ export const authInterceptor = (
   );
 };
 
-export const addTokenHeader = (
-  request: HttpRequest<any>,
-  accessToken: string,
-) => {
+export const addTokenHeader = (request: HttpRequest<any>, accessToken: string) => {
   return request.clone({
     headers: request.headers.set('Authorization', 'Bearer ' + accessToken),
   });

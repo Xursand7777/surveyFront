@@ -1,7 +1,7 @@
-import {Routes} from "@angular/router";
+import { Routes } from '@angular/router';
 import { initialDataResolver } from './app.resolvers';
-import {LayoutComponent} from "@modules/layout/layout.component";
-import {AuthGuard} from "@core/auth/guards/auth.guard";
+import { LayoutComponent } from '@modules/layout/layout.component';
+import { AuthGuard } from '@core/auth/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'projects' },
@@ -12,9 +12,11 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [],
+    canActivateChild: [],
     resolve: {},
     children: [
       { path: 'projects', loadComponent: () => import('./modules/pages/projects/projects.component') }
-    ]
-  }
+    ],
+  },
 ] as Routes;

@@ -1,11 +1,10 @@
-import {inject, Injectable} from "@angular/core";
-import {filter, take} from "rxjs";
-import {DOCUMENT} from "@angular/common";
-import {NavigationEnd, Router} from "@angular/router";
+import { inject, Injectable } from '@angular/core';
+import { filter, take } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { NavigationEnd, Router } from '@angular/router';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class SplashScreenService {
-
   private _document = inject(DOCUMENT);
   private _router = inject(Router);
 
@@ -17,7 +16,7 @@ export class SplashScreenService {
     this._router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
-        take(1)
+        take(1),
       )
       .subscribe(() => {
         this.hide();

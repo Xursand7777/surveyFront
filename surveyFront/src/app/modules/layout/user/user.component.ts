@@ -1,14 +1,16 @@
-import {Component, inject} from "@angular/core";
-import {NzAvatarComponent} from "ng-zorro-antd/avatar";
+import { Component, inject } from '@angular/core';
+import { TranslocoPipe } from '@ngneat/transloco';
+import { UserService } from '../../../core/services/user.service';
+import { map } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { NzAvatarComponent } from 'ng-zorro-antd/avatar';
 
 @Component({
-  selector: "app-user",
-  styleUrls: ["./user.component.scss"],
-  templateUrl: "./user.component.html",
-  imports: [
-    NzAvatarComponent
-  ],
-  standalone: true
+  selector: 'app-user',
+  styleUrls: ['./user.component.scss'],
+  templateUrl: './user.component.html',
+  imports: [TranslocoPipe, AsyncPipe, NzAvatarComponent],
+  standalone: true,
 })
 export class UserComponent {
   overlayVisible = false;

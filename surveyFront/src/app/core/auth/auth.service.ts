@@ -3,10 +3,9 @@ import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from './auth.utils';
 
-
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private _authenticated: boolean = false;
+  private _authenticated = false;
   private _httpClient = inject(HttpClient);
   // private _accountClient = inject(AccountClient);
   // -----------------------------------------------------------------------------------------------------
@@ -50,7 +49,7 @@ export class AuthService {
    * @param password
    */
   changePassword(password: string): any {
-   // return this._accountClient.changeUserPassword(password);
+    // return this._accountClient.changeUserPassword(password);
   }
 
   /**
@@ -172,10 +171,7 @@ export class AuthService {
    *
    * @param credentials
    */
-  unlockSession(credentials: {
-    email: string;
-    password: string;
-  }): Observable<any> {
+  unlockSession(credentials: { email: string; password: string }): Observable<any> {
     return this._httpClient.post('api/auth/unlock-session', credentials);
   }
 

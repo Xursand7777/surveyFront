@@ -1,13 +1,5 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
-import {UserService} from "../../../core/services/user.service";
-
+import { Directive, ElementRef, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { UserService } from '../../../core/services/user.service';
 
 // https://stackblitz.com/edit/angular-permission-directive?file=app%2Fapp.component.html
 @Directive({
@@ -30,7 +22,7 @@ export class HasPermissionDirective implements OnInit {
 
   ngOnInit() {
     this.userService.user$.subscribe((user) => {
-      console.log(user, 'user')
+      console.log(user, 'user');
       this.currentUser = user;
       this.updateView();
     });
