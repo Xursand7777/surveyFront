@@ -1,11 +1,8 @@
-import {Constants} from "@core/constants/constants";
+import { Constants } from '@core/constants/constants';
 
 export class BrowserStorage {
   public static get currentLanguage() {
-    return (
-      this.get(Constants.LOCAL_STORAGE_KEYS.language) ||
-      Constants.DEFAULT_LANGUAGE.code
-    );
+    return this.get(Constants.LOCAL_STORAGE_KEYS.language) || Constants.DEFAULT_LANGUAGE.code;
   }
   public static set currentLanguage(v: string) {
     this.set(Constants.LOCAL_STORAGE_KEYS.language, v);

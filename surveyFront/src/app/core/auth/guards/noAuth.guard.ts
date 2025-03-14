@@ -3,10 +3,7 @@ import { CanActivateChildFn, CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { of, switchMap } from 'rxjs';
 
-export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (
-  route,
-  state
-) => {
+export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (route, state) => {
   const router: Router = inject(Router);
 
   // Check the authentication status
@@ -21,6 +18,6 @@ export const NoAuthGuard: CanActivateFn | CanActivateChildFn = (
 
         // Allow the access
         return of(true);
-      })
+      }),
     );
 };

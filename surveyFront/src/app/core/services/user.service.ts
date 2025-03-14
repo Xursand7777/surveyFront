@@ -1,13 +1,14 @@
-import {Injectable} from "@angular/core";
-import {BehaviorSubject, map, Observable} from "rxjs";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private _user: BehaviorSubject<any> = new BehaviorSubject<any>(
-    {activeRole:'АДМИНИСТРАТОР', permissions: 'АДМИНИСТРАТОР'} as unknown,
-  );
+  private _user: BehaviorSubject<any> = new BehaviorSubject<any>({
+    activeRole: 'АДМИНИСТРАТОР',
+    permissions: 'АДМИНИСТРАТОР',
+  } as unknown);
 
   // -----------------------------------------------------------------------------------------------------
   // @ Accessors

@@ -13,10 +13,7 @@
     <hr class="mt-2 xl:mt-[8px] mb-4 w-full m-0 border-b-0 border-[#E7E7E7]" />
     <div class="custom-scroll overflow-hidden hover:overflow-y-auto">
       @for (menuGroup of menus; track menuGroup) {
-        <p
-          class="text-[#b1875e] px-4 item-title py-[10px]"
-
-        >
+        <p class="text-[#b1875e] px-4 item-title py-[10px]">
           {{ menuGroup.label | transloco }}
         </p>
         <ul class="w-full flex flex-col gap-2">
@@ -36,9 +33,7 @@
     </div>
   </div>
   <div class="flex flex-col flex-auto w-full min-w-0 min-h-screen">
-    <div
-      class="rounded-[20px] flex justify-between px-6 py-5 items-center burger bg-white shadow"
-    >
+    <div class="rounded-[20px] flex justify-between px-6 py-5 items-center burger bg-white shadow">
       <div class="flex items-center gap-4">
         <button
           nz-button
@@ -50,26 +45,21 @@
         >
           <i nz-icon nzType="menu" nzTheme="outline"></i>
         </button>
-<!--        @if (user$ | async; as user) {-->
-<!--          <p class="text-2xl font-semibold">{{ user.organizationName }}</p>-->
-<!--        }-->
+        <!--        @if (user$ | async; as user) {-->
+        <!--          <p class="text-2xl font-semibold">{{ user.organizationName }}</p>-->
+        <!--        }-->
       </div>
       <div class="flex gap-6 items-center">
-<!--        <app-languages></app-languages>-->
-<!--        <app-user></app-user>-->
+        <!--        <app-languages></app-languages>-->
+        <!--        <app-user></app-user>-->
       </div>
     </div>
-    <div
-      class="flex flex-col flex-auto layout mt-5 rounded-[20px] bg-white shadow"
-    >
+    <div class="flex flex-col flex-auto layout mt-5 rounded-[20px] bg-white shadow">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
 
 @if (isMobile && visibleSidebar) {
-  <div
-    class="vertical-navigation-overlay"
-    (click)="toggleVerticalNavigation()"
-  ></div>
+  <div class="vertical-navigation-overlay" (click)="toggleVerticalNavigation()"></div>
 }

@@ -35,8 +35,7 @@ export class Constants {
   };
 }
 
-
-export type TypesRoles = 'АДМИНИСТРАТОР'
+export type TypesRoles = 'АДМИНИСТРАТОР';
 
 export interface Language {
   label: string;
